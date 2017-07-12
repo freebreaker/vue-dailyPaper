@@ -1,7 +1,7 @@
 <template>
   <div class="swipe">
       <mt-swipe :auto="4000">
-          <mt-swipe-item v-for="topArticle in topArticles">
+          <mt-swipe-item v-for="topArticle in topArticles" @click.native="articleDetails(topArticle.id)">
             <img :src="changeImgUrl(topArticle.image)" :alt="topArticle.title">
             <span>{{topArticle.title}}</span>
           </mt-swipe-item>
@@ -11,6 +11,7 @@
 
 <script>
   import axios from 'axios'
+  import routes from '../router.config.js'
   export default {
       data() {
         return {
@@ -19,7 +20,7 @@
       },
 
       created(){
-        axios.get('api/news/latest')
+        axios.get('/api/news/latest')
           .then(response =>{
             this.topArticles=response.data.top_stories
             console.log(this.topArticles)
@@ -34,9 +35,13 @@
         changeImgUrl:function(srcUrl){
           if (srcUrl !== undefined) {
             return srcUrl.replace(/http\w{0,1}:\/\/p/g, 'https://images.weserv.nl/?url=p');
-            console.log(srcUrl)
+
           }
 
+        },
+
+        articleDetails(id){
+          this.$router.push({ name: 'newsDetails', params: { id: id } });
         }
       }
 
