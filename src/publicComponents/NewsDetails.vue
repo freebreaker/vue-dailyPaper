@@ -63,29 +63,29 @@ export default {
 
 <style lang="scss" scoped>
 .swipe{
-  height:640px;
+  height:200px;
   color: #fff;
-  position:relative;
   font-family:"微软雅黑";
+  position:relative;
+  overflow-y: hidden;
   .articleImg {
       width:100%;
-      height:640px;
       position: absolute;
       top:0;
   }
   .articleTitle{
       position: absolute;
       z-index: 2;
-      bottom: 40px;
-      padding: 40px 20px;
-      font-size: 60px;
-      line-height: 70px;
+      bottom: 10px;
+      padding: 30px 20px;
+      font-size: 20px;
+      line-height: 25px;
   }
   .image-source{
       position: absolute;
-      right: 28px;
-      bottom: 30px;
-      font-size: 30px;
+      right: 8px;
+      bottom: 10px;
+      font-size: 12px;
       color: #ccc;
   }
    .body-wrap{

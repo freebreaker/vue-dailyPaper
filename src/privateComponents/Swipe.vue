@@ -51,21 +51,22 @@
 
 <style lang="scss" scoped>
 .swipe{
-  height:640px;
+  height:200px;
   color: #fff;
   .articleImg {
       width:100%;
       position: absolute;
       bottom: -75px;
-  
   }
   .articleTitle{
       position: absolute;
       z-index: 2;
       bottom: 0px;
-      padding: 40px 20px;
-      font-size: 60px;
-      line-height: 70px;
+      padding: 30px 20px;
+      font-size: 20px;
+      font-weight:bold;
+      font-family:"微软雅黑";
+      line-height: 25px;
   }
 }
 

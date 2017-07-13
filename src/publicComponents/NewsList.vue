@@ -112,28 +112,27 @@
     display:flex;
     flex-direction:column ;
     .list-item {
-        height:200px;
-        margin: 10px 15px;
-		border-bottom: 1px solid #f5f5f5;
+        height:90px;
+        margin: 0 15px;
+	    	border-bottom: 1px solid #f5f5f5;
         background:#fff;
         border-radius:4px;
         .item-title {
             display: inline-block;
             width: 70%;
             box-sizing:border-box;
-            padding: 40px;
-            font-size:40px;
+            padding-top: 15px;
             font-weight:bold;
             font-family:"微软雅黑";
-            line-height: 45px;
+            line-height: 20px;
         }
         .image-wrapper {
-			position: relative;
-			float: right;
-			padding: 30px 20px;
+            position: relative;
+            float: right;
+            padding-top:15px;
             .item-image {
-                width: 180px;
-                height: 144px;
+                width: 75px;
+                height: 60px;
             }
 
         }
