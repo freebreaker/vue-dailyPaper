@@ -1,6 +1,12 @@
 <template>
   <div class="news-detail">
-    <img :src="changeImgUrl(this.data.image)">
+
+    <div class="swipe">
+        <img class="articleImg" :src="changeImgUrl(this.data.image)">
+        <span class="articleTitle">{{data.title}}</span>
+        <span class="image-source">{{this.data.image_source}}</span>
+    </div>
+
     <div class="body-wrap" v-html="data.body"></div>
   </div>
 </template>
@@ -54,6 +60,41 @@ export default {
    }
 }
 </script>
-<style scoped>
 
+<style lang="scss" scoped>
+.swipe{
+  height:640px;
+  color: #fff;
+  position:relative;
+  font-family:"微软雅黑";
+  .articleImg {
+      width:100%;
+      height:640px;
+      position: absolute;
+      top:0;
+  }
+  .articleTitle{
+      position: absolute;
+      z-index: 2;
+      bottom: 40px;
+      padding: 40px 20px;
+      font-size: 60px;
+      line-height: 70px;
+  }
+  .image-source{
+      position: absolute;
+      right: 28px;
+      bottom: 30px;
+      font-size: 30px;
+      color: #ccc;
+  }
+   .body-wrap{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    padding-bottom: 44px;
+   }
+}
+
+@import "/static/css/NewsDetails.css";
 </style>

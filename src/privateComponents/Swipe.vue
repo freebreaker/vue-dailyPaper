@@ -2,8 +2,8 @@
   <div class="swipe">
       <mt-swipe :auto="4000">
           <mt-swipe-item v-for="topArticle in topArticles" @click.native="articleDetails(topArticle.id)">
-            <img :src="changeImgUrl(topArticle.image)" :alt="topArticle.title">
-            <span>{{topArticle.title}}</span>
+            <img class="articleImg" :src="changeImgUrl(topArticle.image)" :alt="topArticle.title">
+            <span class="articleTitle">{{topArticle.title}}</span>
           </mt-swipe-item>
       </mt-swipe>
   </div>
@@ -49,15 +49,25 @@
 
 </script>
 
-<style>
+<style lang="scss" scoped>
 .swipe{
-  width:100%;
-  height:500px;
+  height:640px;
+  color: #fff;
+  .articleImg {
+      width:100%;
+      position: absolute;
+      bottom: -75px;
+  
+  }
+  .articleTitle{
+      position: absolute;
+      z-index: 2;
+      bottom: 0px;
+      padding: 40px 20px;
+      font-size: 60px;
+      line-height: 70px;
+  }
 }
 
-.swipe img{
-  width:100%;
-  height:auto;
-}
 </style>
 

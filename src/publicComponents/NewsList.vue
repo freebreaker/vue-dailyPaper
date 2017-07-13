@@ -2,7 +2,7 @@
   <div class="newsList">
     <ul class="list"
     v-infinite-scroll="loadMore">
-      <li class="list-item" v-for="article in this.$store.state.articles">
+      <li class="list-item" v-for="article in this.$store.state.articles" @click="articleDetails(article.id)">
         <span class="item-title">{{article.title}}</span>
         <div class="image-wrapper">
             <img class="item-image" v-lazy.newsList="changeImgUrl(article.images[0])" :alt="article.title">
@@ -26,7 +26,6 @@
         
         this.initDate()
         this.fetchData()
-        this.loadMore()
 
       },
 
@@ -91,6 +90,11 @@
           }
 
         },
+        
+        articleDetails:function(id){
+          console.log(555555555)
+          this.$router.push({ name: 'newsDetails', params: { id: id } });
+        },
 
         loadMore:function(){
             this.fetchMoreData()
@@ -108,22 +112,28 @@
     display:flex;
     flex-direction:column ;
     .list-item {
-        height:90px;
-        margin: 0 15px;
+        height:200px;
+        margin: 10px 15px;
 		border-bottom: 1px solid #f5f5f5;
+        background:#fff;
+        border-radius:4px;
         .item-title {
             display: inline-block;
             width: 70%;
-            padding-top: 15px;
-            line-height: 20px;
+            box-sizing:border-box;
+            padding: 40px;
+            font-size:40px;
+            font-weight:bold;
+            font-family:"微软雅黑";
+            line-height: 45px;
         }
         .image-wrapper {
 			position: relative;
 			float: right;
-			padding-top: 15px;
+			padding: 30px 20px;
             .item-image {
-                width: 75px;
-                height: 60px;
+                width: 180px;
+                height: 144px;
             }
 
         }

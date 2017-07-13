@@ -27,9 +27,10 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  margin:0;
+  padding:0;
   color: #2c3e50;
-  margin-top: 60px;
+  background-color:#f6f6f6;
 }
 
 h1, h2 {
@@ -46,7 +47,5 @@ li {
   margin: 0 10px;
 }
 
-a {
-  color: #42b983;
-}
+
 </style>
