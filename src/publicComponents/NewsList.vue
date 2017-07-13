@@ -1,9 +1,12 @@
 <template>
   <div class="newsList">
-    <ul class="articlesList"
+    <ul class="list"
     v-infinite-scroll="loadMore">
-      <li v-for="article in this.$store.state.articles">
+      <li class="list-item" v-for="article in this.$store.state.articles">
         <span class="item-title">{{article.title}}</span>
+        <div class="image-wrapper">
+            <img class="item-image" v-lazy.newsList="changeImgUrl(article.images[0])" :alt="article.title">
+        </div>
       </li>
     </ul>
   </div>
@@ -50,7 +53,7 @@
         fetchMoreData:function(){
             axios.get('/api/news/before/' + this.dateStr)
                 .then(response => {
-                    
+
                     let articles=response.data.stories
                     let ids=articles.map(story => story.id)
                     console.log(ids)
@@ -81,6 +84,14 @@
             console.log(this.dateStr)
         },
 
+        changeImgUrl:function(srcUrl){
+          if (srcUrl !== undefined) {
+            return srcUrl.replace(/http\w{0,1}:\/\/p/g, 'https://images.weserv.nl/?url=p');
+
+          }
+
+        },
+
         loadMore:function(){
             this.fetchMoreData()
         }
@@ -90,7 +101,36 @@
 
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+
+.list {
+    display:flex;
+    flex-direction:column ;
+    .list-item {
+        height:90px;
+        margin: 0 15px;
+		border-bottom: 1px solid #f5f5f5;
+        .item-title {
+            display: inline-block;
+            width: 70%;
+            padding-top: 15px;
+            line-height: 20px;
+        }
+        .image-wrapper {
+			position: relative;
+			float: right;
+			padding-top: 15px;
+            .item-image {
+                width: 75px;
+                height: 60px;
+            }
+
+        }
+
+    }
+}
+
 
 </style>
 

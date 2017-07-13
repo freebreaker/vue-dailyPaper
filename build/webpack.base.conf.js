@@ -38,6 +38,10 @@ module.exports = {
         include: [resolve('src'), resolve('test')]
       },
       {
+        test: /\.scss$/,
+        loader:'style!css!sass' //这里用了样式分离出来的插件，如果不想分离出来，可以直接这样写 loader:'style!css!sass'
+      },
+      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
