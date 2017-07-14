@@ -1,15 +1,21 @@
 <template>
+
   <div class="newsList">
+
     <ul class="list"
-    v-infinite-scroll="loadMore">
-      <li class="list-item" v-for="article in this.$store.state.articles" @click="articleDetails(article.id)">
+    v-infinite-scroll="loadMore"
+    infinite-scroll-disabled="loading"
+    infinite-scroll-distance="40" v-for="day in this.$store.state.list">
+      <li>{{day.dateNum}}</li>
+      <li class="list-item" v-for="article in day.articles" @click="articleDetails(article.id)"  :key="article.id">
         <span class="item-title">{{article.title}}</span>
         <div class="image-wrapper">
             <img class="item-image" v-lazy.newsList="changeImgUrl(article.images[0])" :alt="article.title">
         </div>
       </li>
     </ul>
-  </div>
+
+</div>
 </template>
 
 <script>
@@ -17,16 +23,16 @@
   export default {
       data() {
         return {
+          loading:false,
           date:Date,
-          dateStr:''
+          dateStr:'',
+          dateToChinese:""
+          
         }
       },
 
       created(){
-        
         this.initDate()
-        this.fetchData()
-
       },
 
       methods:{
@@ -36,8 +42,11 @@
 
               let articles=response.data.stories
               let ids=articles.map(story => story.id)
+              console.log(response)
+              let dateNum=this.dateToChinese
 
               this.$store.dispatch('addNews',{
+                  dateNum:dateNum,
                   articles:articles,
                   ids:ids
               })
@@ -53,18 +62,23 @@
             axios.get('/api/news/before/' + this.dateStr)
                 .then(response => {
 
-                    let articles=response.data.stories
-                    let ids=articles.map(story => story.id)
-                    console.log(ids)
+                  let articles=response.data.stories
+                  let ids=articles.map(story => story.id)
+                  console.log(response)
+                  let dateNum=this.dateToChinese
 
-                    this.$store.dispatch('addNews',{
-                        articles:articles,
-                        ids:ids
-              })
+                  this.$store.dispatch('addNews',{
+                      dateNum:dateNum,
+                      articles:articles,
+                      ids:ids
+                  })
                 })
                 .catch(error => {
                     console.log(error)
                 })
+              this.DateToChinese()
+              this.decreaseDate()
+
         },
 
         initDate:function(){
@@ -82,6 +96,21 @@
             this.dateStr = year + month + day;
             console.log(this.dateStr)
         },
+        DateToChinese:function(){
+            let year = this.date.getFullYear();
+            let month = this.date.getMonth() + 1;
+            let day = this.date.getDate();
+            month = month < 10 ? '0' + month : month; // 格式化月份，小于10前置0
+            day = day < 10 ? '0' + day : day; // 格式化日期，小于10前置0;
+
+            this.dateToChinese=month+"月"+day+"日"
+        },
+
+        decreaseDate:function(){
+          this.date.setDate(this.date.getDate()-1)
+          console.log(this.date+100000000)
+          this.DateToString()
+        },
 
         changeImgUrl:function(srcUrl){
           if (srcUrl !== undefined) {
@@ -92,12 +121,13 @@
         },
         
         articleDetails:function(id){
-          console.log(555555555)
           this.$router.push({ name: 'newsDetails', params: { id: id } });
         },
 
         loadMore:function(){
+            this.loading=true
             this.fetchMoreData()
+            this.loading=false
         }
       }
 
@@ -111,9 +141,10 @@
 .list {
     display:flex;
     flex-direction:column ;
+    background:#f3f3f3;
     .list-item {
         height:90px;
-        margin: 0 15px;
+        margin: 5px 10px;
 	    	border-bottom: 1px solid #f5f5f5;
         background:#fff;
         border-radius:4px;
@@ -121,7 +152,7 @@
             display: inline-block;
             width: 70%;
             box-sizing:border-box;
-            padding-top: 15px;
+            padding: 15px 20px;
             font-weight:bold;
             font-family:"微软雅黑";
             line-height: 20px;

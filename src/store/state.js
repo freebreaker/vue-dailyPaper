@@ -1,4 +1,8 @@
 export default {
-  articles: [],
-  ids:[]
+  list:[{
+    dateNum:"",
+    articles: [],
+    ids:[]
+  }]
+
 }
