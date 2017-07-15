@@ -1,7 +1,15 @@
 <template>
 
   <div class="newsList">
-
+    <ul class="list"> 
+      <li>今日新闻</li>
+      <li class="list-item" v-for="article in data.articles" @click="articleDetails(article.id)"  :key="article.id">
+          <span class="item-title">{{article.title}}</span>
+          <div class="image-wrapper">
+              <img class="item-image" v-lazy.newsList="changeImgUrl(article.images[0])" :alt="article.title">
+          </div>
+      </li>
+    </ul>
     <ul class="list"
     v-infinite-scroll="loadMore"
     infinite-scroll-disabled="loading"
@@ -23,6 +31,7 @@
   export default {
       data() {
         return {
+          data:[],
           loading:false,
           date:Date,
           dateStr:'',
@@ -33,6 +42,7 @@
 
       created(){
         this.initDate()
+        this.fetchData()
       },
 
       methods:{
@@ -41,15 +51,8 @@
             .then(response =>{
 
               let articles=response.data.stories
-              let ids=articles.map(story => story.id)
-              console.log(response)
-              let dateNum=this.dateToChinese
 
-              this.$store.dispatch('addNews',{
-                  dateNum:dateNum,
-                  articles:articles,
-                  ids:ids
-              })
+              this.data.push(articles)
             })
             .catch(error => {
               console.log(error);
@@ -99,11 +102,13 @@
         DateToChinese:function(){
             let year = this.date.getFullYear();
             let month = this.date.getMonth() + 1;
-            let day = this.date.getDate();
+            let day = this.date.getDate()-1;
+            
+            let week=["星期六","星期天","星期一","星期二","星期三","星期四","星期五"]
             month = month < 10 ? '0' + month : month; // 格式化月份，小于10前置0
             day = day < 10 ? '0' + day : day; // 格式化日期，小于10前置0;
 
-            this.dateToChinese=month+"月"+day+"日"
+            this.dateToChinese=month+"月"+day+"日"+"   "+week[this.date.getDay()]
         },
 
         decreaseDate:function(){

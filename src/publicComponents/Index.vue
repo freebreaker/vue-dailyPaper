@@ -1,5 +1,6 @@
 <template>
   <div>
+    <HeaderBar></HeaderBar>
     <Swipe></Swipe>
     <NewsList></NewsList>
   </div>
@@ -11,12 +12,15 @@ import Swipe from '../privateComponents/Swipe.vue'
 
 import NewsList from './NewsList.vue'
 
+import HeaderBar from './HeaderBar.vue'
+
 
 export default {
 
   components:{
     Swipe,
-    NewsList
+    NewsList,
+    HeaderBar
   }
 
 }
