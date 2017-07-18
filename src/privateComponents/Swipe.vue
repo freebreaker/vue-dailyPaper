@@ -51,7 +51,7 @@
 
 <style lang="scss" scoped>
 .swipe{
-  height:200px;
+  height:300px;
   color: #fff;
   .articleImg {
       width:100%;

@@ -1,29 +1,45 @@
 <template>
   <div>
-    <HeaderBar></HeaderBar>
+    <HeaderBar v-on:hideSidebar="toggleSidebar"></HeaderBar>    
+    <SideBar  :showresult="isShowSidebar"  v-on:hideSidebar="toggleSidebar"></SideBar>
     <Swipe></Swipe>
     <NewsList></NewsList>
+    <div class="cover" v-if="isShowSidebar" @click="toggleSidebar"></div>
   </div>
 </template>
 
 <script>
-
 import Swipe from '../privateComponents/Swipe.vue'
 
 import NewsList from './NewsList.vue'
 
 import HeaderBar from './HeaderBar.vue'
 
+import SideBar from "./SideBar.vue"
+
 
 export default {
-
+  data() {
+    return {
+      isShowSidebar: false
+    }
+  },
   components:{
     Swipe,
     NewsList,
-    HeaderBar
+    HeaderBar,
+    SideBar
+  },
+
+  methods:{
+    toggleSidebar() {
+       this.isShowSidebar=!this.isShowSidebar
+       
+    }
   }
 
 }
+
 </script>
 
 <style>
@@ -49,8 +65,16 @@ ul {
 
 li {
   display: inline-block;
-  margin: 0 10px;
 }
 
-
+.cover{
+    position: fixed;
+    transform: translateZ(0);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 98;
+    background: rgba(0, 0, 0, 0.7);
+}
 </style>

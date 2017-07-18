@@ -3,7 +3,7 @@
   <div class="newsList">
     <ul class="list"> 
       <li>今日新闻</li>
-      <li class="list-item" v-for="article in data.articles" @click="articleDetails(article.id)"  :key="article.id">
+      <li class="list-item" v-for="article in data" @click="articleDetails(article.id)"  :key="article.id">
           <span class="item-title">{{article.title}}</span>
           <div class="image-wrapper">
               <img class="item-image" v-lazy.newsList="changeImgUrl(article.images[0])" :alt="article.title">
@@ -42,24 +42,20 @@
 
       created(){
         this.initDate()
-        this.fetchData()
-      },
-
-      methods:{
-        fetchData:function(){
-          axios.get('api/news/latest')
+        axios.get('api/news/latest')
             .then(response =>{
 
-              let articles=response.data.stories
+              this.data=response.data.stories
+              console.log(response)
 
-              this.data.push(articles)
             })
             .catch(error => {
               console.log(error);
           })
+      },
 
+      methods:{
 
-        },
 
         fetchMoreData:function(){
             axios.get('/api/news/before/' + this.dateStr)
@@ -67,7 +63,7 @@
 
                   let articles=response.data.stories
                   let ids=articles.map(story => story.id)
-                  console.log(response)
+     
                   let dateNum=this.dateToChinese
 
                   this.$store.dispatch('addNews',{
