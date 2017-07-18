@@ -36,6 +36,7 @@
           date:Date,
           dateStr:'',
           dateToChinese:""
+
           
         }
       },

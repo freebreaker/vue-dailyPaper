@@ -1,14 +1,16 @@
 <template>
-    <div class="themeContent">
-        <ThemeList></ThemeList>
-    </div>
-
+    <header>
+        <div class="themeNavWrap">
+            <div class="themeNav">
+                <i class="icon iconfont icon-fanhui-copy"></i>
+                <i class="icon iconfont frontpage">首页</i>
+            </div>
+        </div>
+    </header>
 
 </template>
 <script>
 import axios from 'axios'
-import ThemeNav from "./themeNav.vue"
-import ThemeList from "./ThemeList.vue"
 
 
 export default {
@@ -22,17 +24,14 @@ export default {
 
   created() {
   },
+  
 
-  components:{
-      ThemeNav,
-      ThemeList
-  },
   methods: {
       ShowSidebar:function(){
         this.$emit('hideSidebar');
-  }
+        }
 
-    }
+  }
 }   
 </script>
 

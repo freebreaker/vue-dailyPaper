@@ -2,7 +2,7 @@
   <div class="news-detail">
 
     <div class="swipe">
-        <img class="articleImg" :src="changeImgUrl(this.data.image)">
+        <img class="articleImg" v-lazy="changeImgUrl(this.data.image)">
         <span class="articleTitle">{{data.title}}</span>
         <span class="image-source">{{this.data.image_source}}</span>
     </div>
@@ -16,7 +16,8 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      data: {}
+      data: {},
+      imgId:""
     };
   },
   created() {
@@ -37,7 +38,9 @@ export default {
             .then(response =>{
                 response.data.body=this.getImgUrl(response.data.body)
                 this.data = response.data
-                console.log(response.data)
+                console.log(response.data.images)
+                this.imgId=response.data.images.join("")
+
             })
             .catch(error => {
             console.log(error);
