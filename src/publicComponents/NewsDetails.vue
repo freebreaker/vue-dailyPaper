@@ -1,6 +1,6 @@
 <template>
   <div class="news-detail">
-
+    <HeaderBar></HeaderBar>    
     <div class="swipe">
         <img class="articleImg" v-lazy="changeImgUrl(this.data.image)">
         <span class="articleTitle">{{data.title}}</span>
@@ -9,9 +9,11 @@
 
     <div class="body-wrap" v-html="data.body"></div>
   </div>
-</template>
+</template> 
 <script>
 import axios from 'axios'
+
+import HeaderBar from './HeaderBar.vue'
 
 export default {
   data() {
@@ -22,6 +24,9 @@ export default {
   },
   created() {
     this.fetchData();
+  },
+  components:{
+    HeaderBar
   },
   methods: {
     // 获取路由参数上的id新闻具体内容

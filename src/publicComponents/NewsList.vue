@@ -2,7 +2,7 @@
 
   <div class="newsList">
     <ul class="list"> 
-      <li>今日新闻</li>
+      <li >今日新闻</li>
       <li class="list-item" v-for="article in data" @click="articleDetails(article.id)"  :key="article.id">
           <span class="item-title">{{article.title}}</span>
           <div class="image-wrapper">
@@ -13,7 +13,8 @@
     <ul class="list"
     v-infinite-scroll="loadMore"
     infinite-scroll-disabled="loading"
-    infinite-scroll-distance="40" v-for="day in this.$store.state.list">
+    infinite-scroll-distance="40
+    " v-for="day in this.$store.state.list">
       <li>{{day.dateNum}}</li>
       <li class="list-item" v-for="article in day.articles" @click="articleDetails(article.id)"  :key="article.id">
         <span class="item-title">{{article.title}}</span>
@@ -25,7 +26,12 @@
 
 </div>
 </template>
+ 
 
+
+
+
+ ;/
 <script>
   import axios from 'axios'
   export default {
@@ -130,6 +136,10 @@
             this.loading=true
             this.fetchMoreData()
             this.loading=false
+            this.$store.dispatch("addDate",
+                this.dateStr
+            )
+            
         }
       }
 

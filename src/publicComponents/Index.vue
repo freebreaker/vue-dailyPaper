@@ -1,10 +1,10 @@
 <template>
   <div>
-    <HeaderBar v-on:hideSidebar="toggleSidebar"></HeaderBar>    
-    <SideBar  :showresult="isShowSidebar"  v-on:hideSidebar="toggleSidebar"></SideBar>
+
+    <HeaderBar></HeaderBar>    
     <Swipe></Swipe>
     <NewsList></NewsList>
-    <div class="cover" v-if="isShowSidebar" @click="toggleSidebar"></div>
+    
   </div>
 </template>
 
@@ -15,7 +15,7 @@ import NewsList from './NewsList.vue'
 
 import HeaderBar from './HeaderBar.vue'
 
-import SideBar from "./SideBar.vue"
+
 
 
 export default {
@@ -27,8 +27,7 @@ export default {
   components:{
     Swipe,
     NewsList,
-    HeaderBar,
-    SideBar
+    HeaderBar
   },
 
   methods:{

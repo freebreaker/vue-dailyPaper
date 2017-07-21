@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1500139777225'); /* IE9*/
-  src: url('iconfont.eot?t=1500139777225#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1500139777225') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1500139777225') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1500139777225#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1500450969924'); /* IE9*/
+  src: url('iconfont.eot?t=1500450969924#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1500450969924') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1500450969924') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1500450969924#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -46,4 +46,6 @@
 .icon-zan2:before { content: "\e600"; }
 
 .icon-nopic-copy:before { content: "\e6de"; }
+
+.icon-fanhui-copy:before { content: "\e6df"; }
 

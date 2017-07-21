@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Sun Jul 16 01:29:37 2017
+Created by FontForge 20120731 at Wed Jul 19 15:56:09 2017
  By admin
 </metadata>
 <defs>
@@ -19,7 +19,7 @@ Created by FontForge 20120731 at Sun Jul 16 01:29:37 2017
     bbox="-70 -128 1094 898"
     underline-thickness="0"
     underline-position="0"
-    unicode-range="U+0078-E6DE"
+    unicode-range="U+0078-E6DF"
   />
 <missing-glyph 
  />
@@ -76,5 +76,7 @@ t9 17.5t7 16t4.5 12l1.5 4.5q37 125 57.5 216.5t22.5 120.5l3 29q0 26 -14 39t-28 14
 M268 467z" />
     <glyph glyph-name="nopic-copy" unicode="&#xe6de;" 
 d="M-70 20v146h1164v-146h-1164zM-70 457h1164v-146h-1164v146zM-70 748h1164v-146h-1164v146z" />
+    <glyph glyph-name="fanhui-copy" unicode="&#xe6df;" 
+d="M222 384l256 256l38 -38l-190 -191h476v-54h-476l190 -191l-38 -38z" />
   </font>
 </defs></svg>

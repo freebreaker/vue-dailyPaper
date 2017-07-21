@@ -1,12 +1,7 @@
 <template>
 
   <div class="ThemeList">
-    <div class="themeNavWrap">
-        <div class="themeNav">
-            <i class="icon iconfont icon-fanhui-copy"></i>
-            <i class="icon iconfont frontpage">{{title}}</i>
-        </div>
-    </div>
+    <HeaderBar :headerTitle="this.headerTitle"></HeaderBar>
     <div class="ThemePhoto">
         <img class="articleImg" v-lazy="changeImgUrl(this.imgUrl)">
         <span class="articleTitle">{{description}}</span>
@@ -30,30 +25,40 @@
 
 <script>
   import axios from 'axios'
+  import HeaderBar from './HeaderBar.vue' 
   export default {
       data() {
         return {
           data:[],
+          id: '',
           loading:false,
           title:'',
+          headerTitle:"",
           imgUrl:'',
           description:'',
           stories:[]          
         }
       },
 
+
       created(){
+          this.id = this.$route.params.id;
+          this.fetchData();
+
+      },
+      components:{
+       HeaderBar
       },
 
       methods:{
-          fetchMoreData:function(){
-            axios.get('/api/theme/'+ this.$route.params.id)
+          fetchData:function(){
+            axios.get('/api/theme/'+ this.id)
                 .then(response => {
-                    console.log(response)
                     this.title=response.data.name
                     this.imgUrl=response.data.background
                     this.description=response.data.description
                     this.stories=response.data.stories
+                    this.headerTitle=response.data.name
 
                 })
                 .catch(error => {
@@ -61,9 +66,10 @@
                 })
 
          },
+            
           loadMore:function(){
             this.loading=true
-            this.fetchMoreData()
+            this.fetchData()
             this.loading=false
         
          },
@@ -74,9 +80,21 @@
          },
          articleDetails:function(id){
           this.$router.push({ name: 'newsDetails', params: { id: id } });
+        },
+        ShowSidebar:function(){
+        this.$emit('hideSidebar');
         }
 
-    }
+    },
+
+
+     watch: {
+        '$route' (to, from) {
+                //刷新参数放到这里里面去触发就可以刷新相同界面了
+                this.id = this.$route.params.id;
+                this.fetchData()
+            }
+        },
   }
 
 </script>
@@ -95,18 +113,14 @@
         font-size:1.25rem;
         line-height:4.0625rem;;
     }
-    .icon-nopic-copy{
+    .icon-fanhui-copy{
         margin-left:1.875rem;
+        font-size:30px;
     }
     .frontpage{
         margin-left:1.875rem;
     }
-    .icon-lingdang{
-        margin-left:10rem;
-    }
-    .icon-fenxiang{
-        margin-left:1.875rem;
-    }
+
 }
 
 .ThemePhoto{

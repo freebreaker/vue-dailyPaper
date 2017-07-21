@@ -55,10 +55,17 @@ export default {
       },
       skipping(id){
         this.$emit('hideSidebar')
-        this.$router.push({ name: 'theme', params: { id: id } });
+        if(id==-1){
+          this.$router.push({ name: 'index'});
+        }else{
+          this.$store.dispatch('changeCurrentThemeId', id);
+          this.$router.push({ name: 'themeList', params: { id: id } });
+        }
+        
+
       },
       fetchData: function() {
-            axios.get('api/themes')
+            axios.get('/api/themes')
             .then(response => {
                 this.list = response.data.others;
                 console.log(response)
@@ -153,13 +160,14 @@ export default {
     background: #f9f9f9;
     .sidebar-list-ul{
       .sidebar-list-li{
-      height: 47px;
+      height: 7%;
       line-height: 60px;
       display: flex;
       flex-direction: row;
       padding-left: 15px;
       >p{
         flex: 1;
+        color: #868686;
       }
       >div{
         padding-right: 40px;

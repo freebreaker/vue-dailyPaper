@@ -3,6 +3,10 @@ export default {
     dateNum:"",
     articles: [],
     ids:[]
-  }]
+  }],
+
+  themeid:-1,
+
+  date:"今日新闻"
 
 }
