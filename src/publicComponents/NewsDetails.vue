@@ -70,6 +70,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .swipe{
   height:200px;
   color: #fff;
@@ -104,5 +105,4 @@ export default {
    }
 }
 
-@import "/static/css/NewsDetails.css";
 </style>
