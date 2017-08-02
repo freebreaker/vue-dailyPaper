@@ -21,7 +21,7 @@ Vue.use(VueLazyload, {
 
 const router = new VueRouter({
   	mode: 'history',
-    base:"/dist/",
+    // base:"/dist/",
 	scrollBehavior: () => ({
 		y: 0
 	}),

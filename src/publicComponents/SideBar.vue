@@ -30,7 +30,7 @@
     </div>
   </div>
 </template>
-<script>
+<script>   
 import axios from 'axios'
 import BScroll from 'better-scroll'
 
@@ -60,9 +60,10 @@ export default {
         }else{
           this.$store.dispatch('changeCurrentThemeId', id);
           this.$router.push({ name: 'themeList', params: { id: id } });
-        }
-        
 
+          console.log(id)
+          console.log(87777777777)
+        }
       },
       fetchData: function() {
             axios.get('/api/themes')
@@ -70,18 +71,25 @@ export default {
                 this.list = response.data.others;
                 console.log(response)
                 this.list.unshift({
-                color: 0,
-                thumbnail: '',
-                description: '首页',
-                id: -1,
-                name: '首页'
+                  color: 0,
+                  thumbnail: '',
+                  description: '首页',
+                  id: -1,
+                  name: '首页'
                 });
             })
             .catch(error => {
                 console.log(error);
             });
       }
-    }
+    },
+
+      watch: {
+        '$route' (to, from) {
+                //刷新参数放到这里里面去触发就可以刷新相同界面了
+                this.fetchData()
+            }
+        },
   }   
 </script>
 <style lang="scss" scoped>

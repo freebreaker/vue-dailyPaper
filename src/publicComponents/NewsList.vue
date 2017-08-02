@@ -31,7 +31,7 @@
 
 
 
- ;/
+ 
 <script>
   import axios from 'axios'
   export default {
@@ -130,6 +130,7 @@
         
         articleDetails:function(id){
           this.$router.push({ name: 'newsDetails', params: { id: id } });
+          console.log(id)
         },
 
         loadMore:function(){

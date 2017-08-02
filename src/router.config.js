@@ -14,9 +14,9 @@ export default [{
 	path:'/newsDetails/:id',
 	name:'newsDetails',
 	component:NewsDetails
-},
-{
+	},
+	{
 	path:'/themeList/:id',
 	name:'themeList',
 	component:ThemeList
-}]
+	}]

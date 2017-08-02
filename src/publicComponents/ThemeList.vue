@@ -30,7 +30,6 @@
       data() {
         return {
           data:[],
-          id: '',
           loading:false,
           title:'',
           headerTitle:"",
@@ -79,22 +78,22 @@
             }
          },
          articleDetails:function(id){
-          this.$router.push({ name: 'newsDetails', params: { id: id } });
+          console.log(id)
+          this.$router.push({ name: 'newsDetails', params:{id: id}});
         },
         ShowSidebar:function(){
         this.$emit('hideSidebar');
         }
 
     },
+    watch: { '$route' (to, from) { 
+        //刷新参数放到这里里面去触发就可以刷新相同界面了
+         this.id = this.$route.params.id; 
+         this.fetchData() 
+    }}
 
 
-     watch: {
-        '$route' (to, from) {
-                //刷新参数放到这里里面去触发就可以刷新相同界面了
-                this.id = this.$route.params.id;
-                this.fetchData()
-            }
-        },
+
   }
 
 </script>

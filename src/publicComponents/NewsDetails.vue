@@ -34,7 +34,7 @@ export default {
 
         // 获得新闻id
         let id = this.$route.params.id;
-        console.log(this.$route)
+
 
 
         //axios发送请求，得到文章内容 
